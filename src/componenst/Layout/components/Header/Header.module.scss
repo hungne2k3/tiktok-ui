@@ -1,4 +1,7 @@
 .wrapper {
+    --search-height: 46px;
+    --search-top-spcer: 9px;
+
     width: 100%;
     height: var(--defau-layout-header-height);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 1px;
@@ -7,6 +10,77 @@
 }
 
 .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: var(--defau-layout-width);
     height: 100%;
+}
+
+.sreach {
+    width: 361px;
+    height: var(--search-height);
+    display: flex;
+    background-color: rgba(22, 24, 35, 0.06);
+    border-radius: 92px;
+    padding-left: 16px;
+    border: 1.5px solid transparent;
+
+    input {
+        flex: 1;
+        color: var(--black);
+        font-size: 1.6rem;
+        background-color: transparent;
+        height: 100%;
+        //  dấu nháy chuột
+        caret-color: var(--primary);
+    }
+
+    input:not(:placeholder-shown) ~ .sreach-btn {
+        color: rgba(22, 24, 35, 0.75);
+    }
+
+    &:focus-within {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+}
+
+.clean,
+.loading {
+    position: absolute;
+    right: 596px;
+    top: 8%;
+    z-index: 2;
+    transform: translateY(-50%);
+    color: rgba(22, 24, 35, 0.34);
+}
+
+.sreach-btn {
+    position: relative;
+    width: var(--search-button-widgth);
+    height: 100%;
+    cursor: pointer;
+    border-top-right-radius: 92px;
+    border-bottom-right-radius: 92px;
+    font-size: 1.8rem;
+    color: rgba(22, 24, 35, 0.34);
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: calc(var(--search-height) - var(--search-top-spcer) * 2);
+        top: var(--search-top-spcer);
+        right: var(--search-button-widgth);
+        background-color: rgba(22, 24, 35, 0.12);
+    }
+
+    &:active {
+        background-color: rgba(22, 24, 35, 0.06);
+    }
 }
