@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 // import thu vien icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import ten icon
-import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner, faMagnifyingGlass, faSignIn } from '@fortawesome/free-solid-svg-icons';
 
 // thu vien tippy
 import Tippy from '@tippyjs/react/headless';
@@ -11,7 +11,7 @@ import 'tippy.js/dist/tippy.css'; // optional
 
 // componen
 import { Wrapper as PoperWrapper } from '../../../Popper/index';
-
+import Button from '../../../Button/index';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import images from '../../../../assest/images';
@@ -24,7 +24,7 @@ function Header() {
 
     useEffect(() => {
         setTimeout(() => {
-            setSreachResult([1, 2, 3]);
+            setSreachResult([]);
         }, 0);
     }, []);
 
@@ -69,7 +69,10 @@ function Header() {
                     </div>
                 </Tippy>
 
-                <div className={cx('action')}></div>
+                <div className={cx('action')}>
+                    <Button text>Uploadt</Button>
+                    <Button primary>Login</Button>
+                </div>
             </div>
         </header>
     );
