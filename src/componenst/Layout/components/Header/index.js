@@ -26,12 +26,29 @@ import styles from './Header.module.scss';
 import images from '../../../../assest/images';
 import AccountItem from '../../../AccoutItem/index';
 import Menu from '../../../Popper/Menu/index';
+import MenuItems from '../../../Popper/Menu/MenuItems';
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
         title: 'English',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'ENGLISH',
+                },
+
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'VIETNAMESE',
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -52,6 +69,15 @@ function Header() {
             setSreachResult([]);
         }, 0);
     }, []);
+
+    const handleMenuChange = (MenuItems) => {
+        switch (MenuItems.type) {
+            case 'language':
+                // handle change language
+                break;
+            default:
+        }
+    };
 
     return (
         <header className={cx('wrapper')}>
@@ -98,7 +124,7 @@ function Header() {
                     <Button text>Upload</Button>
                     <Button primary>Login</Button>
 
-                    <Menu items={MENU_ITEMS}>
+                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
                         <button className={cx('more-btn')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>

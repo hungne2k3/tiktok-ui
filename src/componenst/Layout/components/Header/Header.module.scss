@@ -13,6 +13,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 var(--defau-layout-horizontal-spacer);
     width: var(--defau-layout-width);
     height: 100%;
 }
@@ -59,7 +60,7 @@
 .clean,
 .loading {
     position: absolute;
-    right: 648px;
+    right: 720px;
     top: 22px;
     z-index: 2;
     // transform: translateY(-50%);
