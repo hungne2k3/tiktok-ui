@@ -11,10 +11,16 @@ import {
     faEarthAsia,
     faCircleQuestion,
     faKeyboard,
+    faCloudUpload,
+    faUser,
+    faCoins,
+    faGear,
+    faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 
 // thu vien tippy
-import Tippy from '@tippyjs/react/headless';
+import HeadlessTippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 // thu vien className: npm i classnames;
 
@@ -26,9 +32,12 @@ import styles from './Header.module.scss';
 import images from '../../../../assest/images';
 import AccountItem from '../../../AccoutItem/index';
 import Menu from '../../../Popper/Menu/index';
-import MenuItems from '../../../Popper/Menu/MenuItems';
+// import MenuItems from '../../../Popper/Menu/MenuItems';
+import avt from './z4690608170978_70d5ac7e6b00ea3666b233795158a37e.jpg';
 
 const cx = classNames.bind(styles);
+
+// làm menu khi chưa login
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
@@ -61,8 +70,38 @@ const MENU_ITEMS = [
     },
 ];
 
+// làm menu sau khi đã Login
+const userMenu = [
+    {
+        icon: <FontAwesomeIcon icon={faUser} />,
+        title: 'View Profile',
+        to: '/@manhhung',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCoins} />,
+        title: 'Get Coins',
+        to: '/feedback',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faGear} />,
+        title: 'Settings',
+        to: '/feedback',
+    },
+    ...MENU_ITEMS,
+    {
+        icon: <FontAwesomeIcon icon={faSignOut} />,
+        title: 'Log Out',
+        to: '/logout',
+        // khi có separate mới có đường kẻ top
+        separate: true,
+    },
+];
+
 function Header() {
     const [sreachResult, setSreachResult] = useState([]);
+
+    // kiểm tra nếu đã locgin thì true, chưa thì false
+    let currentUser = true;
 
     useEffect(() => {
         setTimeout(() => {
@@ -87,7 +126,7 @@ function Header() {
                 </div>
 
                 {/* Làm chức năng khi ấn vào input tìm kiếm sẽ hiển thị những gợi ý có liên quan sử dụng thư viện Tipps */}
-                <Tippy
+                <HeadlessTippy
                     // để làm trạng thái hiển thị
                     visible={sreachResult.length > 0}
                     // thuộc tính này cho phép chọn selection, mặc định là flase
@@ -118,16 +157,35 @@ function Header() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </div>
-                </Tippy>
+                </HeadlessTippy>
 
+                {/* làm trường hợp login và chưa login */}
                 <div className={cx('action')}>
-                    <Button text>Upload</Button>
-                    <Button primary>Login</Button>
+                    {currentUser ? (
+                        <>
+                            {/* đã locgin */}
+                            <Tippy content="Upload Video" placement="bottom" delay={[0, 200]}>
+                                <button className={cx('action-btn')}>
+                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                </button>
+                            </Tippy>
+                        </>
+                    ) : (
+                        <>
+                            {/* chưa lốc in */}
+                            <Button text>Upload</Button>
+                            <Button primary>Login</Button>
+                        </>
+                    )}
 
-                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
-                        <button className={cx('more-btn')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </button>
+                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                        {currentUser ? (
+                            <img src={avt} className={cx('user-avatar')} alt="Manh Hung" />
+                        ) : (
+                            <button className={cx('more-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        )}
                     </Menu>
                 </div>
             </div>

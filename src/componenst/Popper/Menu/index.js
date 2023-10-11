@@ -39,6 +39,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
 
     return (
         <Tippy
+            offset={[16, 8]}
             // delay thoi gian khi hien
             delay={[0, 700]}
             // để làm trạng thái hiển thị
@@ -65,6 +66,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
                     </PoperWrapper>
                 </div>
             )}
+            onHide={() => setHistory((perv) => perv.slice(0, 1))}
         >
             {children}
         </Tippy>
