@@ -16,6 +16,7 @@ import {
     faCoins,
     faGear,
     faSignOut,
+    faUpload,
 } from '@fortawesome/free-solid-svg-icons';
 
 // thu vien tippy
@@ -34,6 +35,8 @@ import AccountItem from '../../../AccoutItem/index';
 import Menu from '../../../Popper/Menu/index';
 // import MenuItems from '../../../Popper/Menu/MenuItems';
 import avt from './z4690608170978_70d5ac7e6b00ea3666b233795158a37e.jpg';
+import Image from '../../../../componenst/Image/index';
+import { UploadIcon } from '../../../../componenst/Icon/Icons';
 
 const cx = classNames.bind(styles);
 
@@ -166,7 +169,7 @@ function Header() {
                             {/* đã locgin */}
                             <Tippy content="Upload Video" placement="bottom" delay={[0, 200]}>
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <UploadIcon />
                                 </button>
                             </Tippy>
                         </>
@@ -180,7 +183,7 @@ function Header() {
 
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img src={avt} className={cx('user-avatar')} alt="Manh Hung" />
+                            <Image src="dfsfsgs.jpg" className={cx('user-avatar')} alt="Manh Hung" fallBack={avt} />
                         ) : (
                             <button className={cx('more-btn')}>
                                 <FontAwesomeIcon icon={faEllipsisVertical} />
