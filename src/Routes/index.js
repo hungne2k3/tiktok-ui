@@ -6,11 +6,13 @@ import Home from '../pages/Home';
 import Following from '../pages/Following';
 import Upload from '../pages/Upload';
 import Sreach from '../pages/Sreach';
+import Profile from '../pages/Profile';
 
 // k can dang nhap van xem dc noi dung
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/following', component: Following },
+    { path: '/@:nickname', component: Profile },
     { path: '/upload', component: Upload, layout: HeaderOnLy },
     { path: '/sreach', component: Sreach, layout: null },
 ];
