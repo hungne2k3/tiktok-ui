@@ -7,6 +7,7 @@ import AccountItem from '../../../AccoutItem/index';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useDebounce } from '../../../../Hook';
 const cx = classNames.bind(styles);
 
 // Xu ly phan logic search
@@ -16,13 +17,22 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
+    // để sd debounce: ta đặt 1 biến rồi gọi đến
+    // searchValue: value, 500: delay
+    // khi người dùng ngừng gõ sau 500s thì debounced sẽ upload vaf cập nhập cho searchValue
+    const debounced = useDebounce(searchValue, 500);
+
+    // lan chạy 1: ''
+    // lan chạy 2: 'h'
+    // lan chạy 3: 'ho'
+    // lan chạy 4: 'hoa'
     const inputRef = useRef();
 
     // fake khi go tim kiem se hien thi
     useEffect(() => {
         // AIP `search?q=` bắt buộc phải truyền dữ liệu vào k đc để trống, vì ở useState('') ta để trống, vậy nên phải có 1 lệnh kt
 
-        if (!searchValue.trim()) {
+        if (!debounced.trim()) {
             setSreachResult([]);
             return;
         }
@@ -31,14 +41,14 @@ function Search() {
         setLoading(true);
 
         // lỗi kiểm thử hay nói cách khác là teser: nếu call api mà nhập: ?, & thì sẽ lỗi vì: ? tượng trưng cho path "/" và & tượng chưng cho ngăn cách
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
             .then((res) => res.json())
             .then((res) => {
                 setSreachResult(res.data);
                 // khi call api xong thi loading la: false;
                 setLoading(false);
             });
-    }, [searchValue]);
+    }, [debounced]);
 
     const handClean = () => {
         setSearchValue('');

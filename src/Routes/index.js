@@ -8,6 +8,7 @@ import Upload from '../pages/Upload';
 import Sreach from '../pages/Sreach';
 import Profile from '../pages/Profile';
 
+// @:nickname
 // k can dang nhap van xem dc noi dung
 const publicRoutes = [
     { path: '/', component: Home },
