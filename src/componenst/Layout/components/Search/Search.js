@@ -1,8 +1,12 @@
+// Import thu vien
 import { useEffect, useState, useRef } from 'react';
 import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css'; // optional
+
+// Import tự viết
 import { Wrapper as PoperWrapper } from '../../../Popper/index';
+import * as searchServices from '../../../../apiServices/searchServices';
 import AccountItem from '../../../AccoutItem/index';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
@@ -37,17 +41,21 @@ function Search() {
             return;
         }
 
-        // khi call api thi loading laf: true;
-        setLoading(true);
+        const fetchApi = async () => {
+            // khi call api thi loading laf: true;
+            setLoading(true);
+
+            const result = await searchServices.search(debounced);
+
+            setSreachResult(result);
+
+            // sau khi da call api xong thi se tra ve false
+            setLoading(false);
+        };
+
+        fetchApi();
 
         // lỗi kiểm thử hay nói cách khác là teser: nếu call api mà nhập: ?, & thì sẽ lỗi vì: ? tượng trưng cho path "/" và & tượng chưng cho ngăn cách
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSreachResult(res.data);
-                // khi call api xong thi loading la: false;
-                setLoading(false);
-            });
     }, [debounced]);
 
     const handClean = () => {
