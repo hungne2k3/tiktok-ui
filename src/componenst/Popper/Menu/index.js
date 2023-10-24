@@ -10,7 +10,7 @@ const cx = classNames.bind(style);
 
 const defaultFn = () => {};
 
-function Menu({ children, items = [], onChange = defaultFn }) {
+function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn }) {
     const [history, setHistory] = useState([{ data: items }]);
 
     const current = history[history.length - 1]; // lấy pt mảng cuối cùng
@@ -39,6 +39,8 @@ function Menu({ children, items = [], onChange = defaultFn }) {
 
     return (
         <Tippy
+            // làm hành vi khi cick vào avt không bị mất đi menu khi di chuột ra ngoài mới mất
+            hideOnClick={hideOnClick}
             offset={[16, 8]}
             // delay thoi gian khi hien
             delay={[0, 700]}

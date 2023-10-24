@@ -12,6 +12,7 @@ import {
     faGear,
     faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 // thu vien tippy
 import Tippy from '@tippyjs/react';
@@ -19,12 +20,12 @@ import 'tippy.js/dist/tippy.css'; // optional
 // thu vien className: npm i classnames;
 
 // componen
+import routesConfig from '../../../../config/routes';
 import Button from '../../../Button/index';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import images from '../../../../assest/images';
 import Menu from '../../../Popper/Menu/index';
-// import MenuItems from '../../../Popper/Menu/MenuItems';
 import avt from '../../../../assest/images/vanh.png';
 import Image from '../../../../componenst/Image/index';
 import { MessageIcon, InboxIcon, UploadIcon } from '../../../../componenst/Icon/Icons';
@@ -109,7 +110,9 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <img src={images.logo} alt="TikTok" />
+                    <Link to={routesConfig.home} className={cx('logo-link')}>
+                        <img src={images.logo} alt="TikTok" />
+                    </Link>
                 </div>
 
                 <Search />

@@ -18,6 +18,10 @@
     height: 100%;
 }
 
+.logo-link {
+    display: flex;
+}
+
 .sreach,
 .sreach-result {
     width: 361px;
@@ -139,4 +143,5 @@
     height: 32px;
     object-fit: cover;
     border-radius: 50%;
+    cursor: pointer;
 }

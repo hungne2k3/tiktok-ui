@@ -69,6 +69,15 @@ function Search() {
         setShowResult(false);
     };
 
+    // hàm sử lý bắt lỗi sự kiện khi nhập khoảng cách vào input search
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue);
+        }
+    };
+
     return (
         <div>
             {/* Làm chức năng khi ấn vào input tìm kiếm sẽ hiển thị những gợi ý có liên quan sử dụng thư viện Tipps */}
@@ -101,7 +110,7 @@ function Search() {
                         value={searchValue}
                         placeholder="Sreach accounts and video"
                         spellCheck={false}
-                        onChange={(e) => setSearchValue(e.target.value)}
+                        onChange={handleChange}
                         // khi focus thì sẽ hiện Result
                         onFocus={() => setShowResult(true)}
                     />
@@ -120,7 +129,7 @@ function Search() {
                     {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
                     {/* Nut tim kiem */}
-                    <button className={cx('sreach-btn')}>
+                    <button className={cx('sreach-btn')} onMouseDown={(e) => e.preventDefault()}>
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </button>
                 </div>
