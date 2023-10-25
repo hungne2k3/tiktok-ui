@@ -5,8 +5,9 @@
     --primary: #fe2c55;
     --black: #000;
     --text-color: #161823;
-    --search-button-widgth: 52px;
+    --search-button-width: 52px;
     --font-family: 'IBM Plex Sans', sans-serif;
+    --white: #fff;
     // default layout
     --defau-layout-header-height: 60px;
     --defau-layout-width: 1150px;
@@ -28,6 +29,23 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
+    overflow-y: overlay;
+}
+
+// Scrollbar CSS
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 button,

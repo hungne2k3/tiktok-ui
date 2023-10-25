@@ -63,7 +63,7 @@
 
 .sreach-btn {
     position: relative;
-    width: var(--search-button-widgth);
+    width: var(--search-button-width);
     height: 100%;
     cursor: pointer;
     border-top-right-radius: 92px;
@@ -82,7 +82,7 @@
         width: 1px;
         height: calc(var(--search-height) - var(--search-top-spcer) * 2);
         top: var(--search-top-spcer);
-        right: var(--search-button-widgth);
+        right: var(--search-button-width);
         background-color: rgba(22, 24, 35, 0.12);
     }
 

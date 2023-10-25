@@ -79,9 +79,11 @@ function Search() {
     };
 
     return (
+        // Error: Tippy
+        // Using a wrapper <div> tag around the reference element solves this by creating a new parentNode context.
+
         <div>
             {/* Làm chức năng khi ấn vào input tìm kiếm sẽ hiển thị những gợi ý có liên quan sử dụng thư viện Tipps */}
-
             <HeadlessTippy
                 // để làm trạng thái hiển thị
                 visible={showResult && sreachResult.length > 0}
