@@ -1,6 +1,6 @@
-import routesConfig from '../config/routes';
+import Config from '../config/index';
 // Layout
-import { HeaderOnLy } from '../componenst/Layout';
+import { HeaderOnLy } from '../layouts';
 
 // Pages
 import Home from '../pages/Home';
@@ -12,11 +12,11 @@ import Profile from '../pages/Profile';
 // @:nickname
 // k can dang nhap van xem dc noi dung
 const publicRoutes = [
-    { path: routesConfig.home, component: Home },
-    { path: routesConfig.following, component: Following },
-    { path: routesConfig.profile, component: Profile },
-    { path: routesConfig.upload, component: Upload, layout: HeaderOnLy },
-    { path: routesConfig.sreach, component: Sreach, layout: null },
+    { path: Config.routes.home, component: Home },
+    { path: Config.routes.following, component: Following },
+    { path: Config.routes.profile, component: Profile },
+    { path: Config.routes.upload, component: Upload, layout: HeaderOnLy },
+    { path: Config.routes.sreach, component: Sreach, layout: null },
 ];
 
 // can dang nhap de xem noi dung, neu k dang nhap thi se chuyen qua trang login

@@ -1,10 +1,10 @@
-import * as request from '../utils/reques';
+import * as httpReques from '../utils/httpReques';
 
 // call API với bất đồng bộ
 export const search = async (q, type = 'less') => {
     try {
         // Call API Axois
-        const res = await request.get('users/search', {
+        const res = await httpReques.get('users/search', {
             // thông số
             params: {
                 // call api tên

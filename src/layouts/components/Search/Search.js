@@ -5,13 +5,13 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css'; // optional
 
 // Import tự viết
-import { Wrapper as PoperWrapper } from '../../../Popper/index';
-import * as searchServices from '../../../../apiServices/searchServices';
-import AccountItem from '../../../AccoutItem/index';
+import { Wrapper as PoperWrapper } from '../../../componenst/Popper/index';
+import * as searchServices from '../../../services/searchServices';
+import AccountItem from '../../../componenst/AccoutItem/index';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useDebounce } from '../../../../Hook';
+import { useDebounce } from '../../../Hook/index';
 const cx = classNames.bind(styles);
 
 // Xu ly phan logic search

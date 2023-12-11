@@ -1,4 +1,5 @@
 import Tippy from '@tippyjs/react/headless';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import style from './Menu.module.scss';
 import { Wrapper as PoperWrapper } from '../../Popper/index';
@@ -57,7 +58,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
 
                         {history.length > 1 && (
                             <Header
-                                title="Language"
+                                title={current.title}
                                 // làm sự kiện quay lại trang, chỉ cần xóa đi phần tử mảng cuối cùng là xong như cách bên dưới làm
                                 onBack={() => {
                                     setHistory((prev) => prev.slice(0, prev.length - 1));
@@ -74,5 +75,12 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
         </Tippy>
     );
 }
+
+Menu.prototype = {
+    children: PropTypes.node.isRequired,
+    items: PropTypes.array.isRequired,
+    hideOnClick: PropTypes.bool.isRequired,
+    onChange: PropTypes.func.isRequired,
+};
 
 export default Menu;

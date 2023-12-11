@@ -20,15 +20,15 @@ import 'tippy.js/dist/tippy.css'; // optional
 // thu vien className: npm i classnames;
 
 // componen
-import routesConfig from '../../../../config/routes';
-import Button from '../../../Button/index';
+import Config from '../../../config/index';
+import Button from '../../../componenst/Button/index';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import images from '../../../../assest/images';
-import Menu from '../../../Popper/Menu/index';
-import avt from '../../../../assest/images/vanh.png';
-import Image from '../../../../componenst/Image/index';
-import { MessageIcon, InboxIcon, UploadIcon } from '../../../../componenst/Icon/Icons';
+import images from '../../../assest/images';
+import Menu from '../../../componenst/Popper/Menu/index';
+import avt from '../../../assest/images/vanh.png';
+import Image from '../../../componenst/Image/index';
+import { MessageIcon, InboxIcon, UploadIcon } from '../../../componenst/Icon/Icons';
 import Search from '../Search/Search';
 
 const cx = classNames.bind(styles);
@@ -110,7 +110,7 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <Link to={Config.routes.home} className={cx('logo-link')}>
                         <img src={images.logo} alt="TikTok" />
                     </Link>
                 </div>
