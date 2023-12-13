@@ -8,12 +8,14 @@ import Following from '../pages/Following';
 import Upload from '../pages/Upload';
 import Sreach from '../pages/Sreach';
 import Profile from '../pages/Profile';
+import Live from '../pages/Live';
 
 // @:nickname
 // k can dang nhap van xem dc noi dung
 const publicRoutes = [
     { path: Config.routes.home, component: Home },
     { path: Config.routes.following, component: Following },
+    { path: Config.routes.live, component: Live },
     { path: Config.routes.profile, component: Profile },
     { path: Config.routes.upload, component: Upload, layout: HeaderOnLy },
     { path: Config.routes.sreach, component: Sreach, layout: null },

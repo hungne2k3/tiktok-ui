@@ -6,6 +6,7 @@ const routes = {
     profile: '/@:nickname',
     upload: '/upload',
     sreach: '/sreach',
+    live: '/live',
 };
 
 export default routes;

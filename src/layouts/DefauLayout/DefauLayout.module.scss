@@ -5,9 +5,10 @@
 }
 
 .container {
+    width: var(--defau-layout-width);
+    max-width: 100%;
     padding: 0 var(--defau-layout-horizontal-spacer);
     margin-top: var(--defau-layout-header-height);
-    width: var(--defau-layout-width);
     display: flex;
 }
 

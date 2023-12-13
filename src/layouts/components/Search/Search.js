@@ -7,7 +7,7 @@ import 'tippy.js/dist/tippy.css'; // optional
 // Import tự viết
 import { Wrapper as PoperWrapper } from '../../../componenst/Popper/index';
 import * as searchServices from '../../../services/searchServices';
-import AccountItem from '../../../componenst/AccoutItem/index';
+import AccountItem from '../../../componenst/AccoutItem';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,7 +24,7 @@ function Search() {
     // để sd debounce: ta đặt 1 biến rồi gọi đến
     // searchValue: value, 500: delay
     // khi người dùng ngừng gõ sau 500s thì debounced sẽ upload vaf cập nhập cho searchValue
-    const debounced = useDebounce(searchValue, 500);
+    const debouncedValue = useDebounce(searchValue, 500);
 
     // lan chạy 1: ''
     // lan chạy 2: 'h'
@@ -36,7 +36,7 @@ function Search() {
     useEffect(() => {
         // AIP `search?q=` bắt buộc phải truyền dữ liệu vào k đc để trống, vì ở useState('') ta để trống, vậy nên phải có 1 lệnh kt
 
-        if (!debounced.trim()) {
+        if (!debouncedValue.trim()) {
             setSreachResult([]);
             return;
         }
@@ -45,7 +45,7 @@ function Search() {
             // khi call api thi loading laf: true;
             setLoading(true);
 
-            const result = await searchServices.search(debounced);
+            const result = await searchServices.search(debouncedValue);
 
             setSreachResult(result);
 
@@ -56,7 +56,7 @@ function Search() {
         fetchApi();
 
         // lỗi kiểm thử hay nói cách khác là teser: nếu call api mà nhập: ?, & thì sẽ lỗi vì: ? tượng trưng cho path "/" và & tượng chưng cho ngăn cách
-    }, [debounced]);
+    }, [debouncedValue]);
 
     const handClean = () => {
         setSearchValue('');
